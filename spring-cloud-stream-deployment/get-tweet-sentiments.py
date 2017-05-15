@@ -25,8 +25,5 @@ def output(payload):
 		return java.util.ArrayList(java.util.Arrays.asList(floats))
 	return None	
 
-if __name__ == '__main__':
-	with open('./list-of-tweets.txt', 'r') as tweets:
-		payload=tweets.read().replace('\n', '')
-	channel='input'	
-result=locals()[channel](payload)
+data = processor.sendAndReceive(input(payload))
+result = output(data)
