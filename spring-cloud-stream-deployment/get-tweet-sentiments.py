@@ -17,7 +17,6 @@ def input(payload):
 			text.append(val)
 
 	result = json.JSONEncoder().encode({"data": text })
-	print(result)
 	return result
 
 def output(payload):
