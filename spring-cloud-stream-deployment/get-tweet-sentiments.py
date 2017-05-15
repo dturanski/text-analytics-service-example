@@ -7,6 +7,7 @@ import java.util.Arrays
 import java.util.ArrayList
 
 def input(payload):
+
 	tweets=json.loads(str(payload))
 	text = []
 	
@@ -21,9 +22,12 @@ def input(payload):
 
 def output(payload):
 	if (payload):
-		floats = [float(x) for x in payload.replace('[','').replace(']','').split()]
-		return java.util.ArrayList(java.util.Arrays.asList(floats))
-	return None	
+		return java.util.ArrayList(java.util.Arrays.asList(payload))
+	return None
 
 data = processor.sendAndReceive(input(payload))
 result = output(data)
+
+
+
+
