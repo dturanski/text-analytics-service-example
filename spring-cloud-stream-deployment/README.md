@@ -1,1 +1,1 @@
-Jupyter Kernel Gateway implementation
+Spring Cloud Stream Flask Client implementation
