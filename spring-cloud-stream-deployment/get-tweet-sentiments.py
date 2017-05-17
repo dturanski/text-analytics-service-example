@@ -33,6 +33,6 @@ def output(payload):
 	return None
 
 data = processor.sendAndReceive(input(payload))
-result = output(payload)
+result = output(data)
 
 
