@@ -25,7 +25,7 @@ def output(payload):
 	return None
 
 data = processor.sendAndReceive(input(payload))
-doc = json.loads(data)
-result = output(doc['polarity'])
+
+result = output(json.loads(data))
 
 
