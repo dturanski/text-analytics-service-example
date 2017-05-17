@@ -69,5 +69,6 @@ def output(payload):
 
 
 data = processor.sendAndReceive(input(payload))
-result = output(data)
+tmp = output(data)
+result = tmp
 
