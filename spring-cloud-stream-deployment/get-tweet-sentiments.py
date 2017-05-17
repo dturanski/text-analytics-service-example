@@ -35,18 +35,23 @@ if __name__ == '__main__':
     processor = Processor()
 
     with open('./list-of-tweets.txt', 'r') as tweets:
-        payload = tweets.read().replace('\n', '')
+        list = []
+        data = json.loads(tweets.read())
+        for tweet in data:
+            list.append(json.dumps(tweet))
+        payload = java.util.ArrayList(java.util.Arrays.asList(list))
+
+
 ####
 
+## Payload is java.util.ArrayList
 def input(payload):
-    tweets = json.loads(payload)
-    text = []
-
-    for tweet in tweets:
+    for item in payload:
+        tweet = json.loads(item)
+        text = []
         if tweet['lang'] == 'en':
             val = tweet['text'].encode('ascii', 'ignore')
             text.append(val)
-
     result = json.JSONEncoder().encode({"data": text})
     return result
 
@@ -65,3 +70,4 @@ def output(payload):
 
 data = processor.sendAndReceive(input(payload))
 result = output(data)
+
