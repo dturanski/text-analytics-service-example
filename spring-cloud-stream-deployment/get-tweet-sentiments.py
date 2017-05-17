@@ -19,13 +19,20 @@ def input(payload):
 	result = json.JSONEncoder().encode({"data": text })
 	return result
 
+
+#convert array of dict to array of str to java.util.ArrayList
 def output(payload):
+
 	if (payload):
-		return java.util.ArrayList(java.util.Arrays.asList(payload))
+		items = []
+		data = json.loads(payload)
+		for item in data:
+			items.append(json.dumps(item))
+
+		return java.util.ArrayList(java.util.Arrays.asList(items))
 	return None
 
 data = processor.sendAndReceive(input(payload))
-
-result = output(json.loads(data))
+result = output(payload)
 
 
