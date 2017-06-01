@@ -24,6 +24,7 @@ cl = cPickle.loads(resp.content)
 
 def regex_preprocess(raw_tweets):
     tweets = map(lambda t: t['text'], raw_tweets)
+
     pp_text = pd.Series(tweets)
 
     user_pat = '(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9]+)'
@@ -40,13 +41,12 @@ def post_process(polarities, tweets):
     result = []
     try:
         for i, polarity in enumerate(polarities):
-            result.append({'polarity': polarity, 'text': tweets[i]})
+            result.append({'polarity': round(polarity,2), 'text': tweets[i]})
 
         return json.dumps(result)
 
     except:
         return json.dumps([])
-
 
 def process(data):
     # Array of raw tweets
@@ -58,6 +58,5 @@ def process(data):
     prediction = cl.predict_proba(tweets)[:][:, 1]
 
     return post_process(prediction.tolist(),tweets)
-
 
 Processor().start(process)
